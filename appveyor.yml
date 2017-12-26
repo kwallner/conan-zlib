@@ -7,7 +7,7 @@ environment:
     PYTHON_ARCH: "32"
 
     CONAN_REFERENCE: "zlib/1.2.11"
-    CONAN_USERNAME: "conan"
+    CONAN_USERNAME: "kwallner"
     CONAN_LOGIN_USERNAME: "kwallner"
     CONAN_CHANNEL: "testing"
     VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
