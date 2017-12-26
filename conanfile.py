@@ -13,7 +13,7 @@ class ZlibConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=False"
     exports_sources = ["CMakeLists.txt"]
-    url = "http://github.com/lasote/conan-zlib"
+    url = "http://github.com/kwallner/conan-zlib"
     license = "http://www.zlib.net/zlib_license.html"
     description = "A Massively Spiffy Yet Delicately Unobtrusive Compression Library " \
                   "(Also Free, Not to Mention Unencumbered by Patents)"
