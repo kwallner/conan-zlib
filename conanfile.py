@@ -10,8 +10,8 @@ class ZlibConan(ConanFile):
     ZIP_FOLDER_NAME = "zlib-%s" % version
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
-    options = {"shared": [True, False], "fpic": [True, False]}
-    default_options = "shared=False", "fpic=True"
+    options = {"shared": [True, False], "fPIC": [True, False]}
+    default_options = "shared=False", "fPIC=True"
     exports_sources = ["CMakeLists.txt"]
     url = "http://github.com/kwallner/conan-zlib"
     license = "http://www.zlib.net/zlib_license.html"
@@ -39,7 +39,7 @@ class ZlibConan(ConanFile):
                     if self.settings.arch in ["x86", "x86_64"] and self.settings.compiler in ["apple-clang", "clang", "gcc"]:
                         env_build.flags.append('-mstackrealign')
 
-                    env_build.fpic = True
+                    env_build.fPIC = self.options.shared or self.options.fPIC
 
                     if self.settings.os == "Macos":
                         old_str = '-install_name $libdir/$SHAREDLIBM'
@@ -51,7 +51,7 @@ class ZlibConan(ConanFile):
                     env_build.make()
                 else:
                     cmake = CMake(self)
-                    cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.shared or self.options.fpic
+                    cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.shared or self.options.fPIC
                     cmake.configure(build_dir=".")
                     cmake.build(build_dir=".")
 
