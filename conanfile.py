@@ -10,8 +10,8 @@ class ZlibConan(ConanFile):
     ZIP_FOLDER_NAME = "zlib-%s" % version
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    options = {"shared": [True, False], "fpic": [True, False]}
+    default_options = "shared=False", "fpic=True"
     exports_sources = ["CMakeLists.txt"]
     url = "http://github.com/kwallner/conan-zlib"
     license = "http://www.zlib.net/zlib_license.html"
@@ -51,6 +51,7 @@ class ZlibConan(ConanFile):
                     env_build.make()
                 else:
                     cmake = CMake(self)
+                    cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.shared or self.options.fpic
                     cmake.configure(build_dir=".")
                     cmake.build(build_dir=".")
 
