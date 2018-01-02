@@ -40,14 +40,24 @@ class ZlibConan(ConanFile):
                         env_build.flags.append('-mstackrealign')
 
                     env_build.fPIC = self.options.shared or self.options.fPIC
-
+                    
+                    # env_build.fPIC seems not to pass the fPIC options
+                    compiler_flags = []
+                    if env_build.fPIC:
+                        compiler_flags.append("-fPIC")
+                    
                     if self.settings.os == "Macos":
                         old_str = '-install_name $libdir/$SHAREDLIBM'
                         new_str = '-install_name $SHAREDLIBM'
                         tools.replace_in_file("../configure", old_str, new_str)
 
+                    args= []
+                    if compiler_flags:  
+                        args.append("CFLAGS='%s'" % " ".join(compiler_flags))
+                        args.append("LDFLAGS='%s'" % " ".join(compiler_flags))
+                        
                     # Zlib configure doesnt allow this parameters
-                    env_build.configure("../", build=False, host=False, target=False)
+                    env_build.configure("../", build=False, host=False, target=False, args=args)
                     env_build.make()
                 else:
                     cmake = CMake(self)
