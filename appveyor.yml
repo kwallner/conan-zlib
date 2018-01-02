@@ -9,9 +9,9 @@ environment:
     CONAN_REFERENCE: "zlib/1.2.11"
     CONAN_USERNAME: "kwallner"
     CONAN_LOGIN_USERNAME: "kwallner"
-    CONAN_CHANNEL: "testing"
+    CONAN_CHANNEL: "stable"
     VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
-    CONAN_UPLOAD: "https://api.bintray.com/conan/kwallner/testing"
+    CONAN_UPLOAD: "https://api.bintray.com/conan/kwallner/stable"
     #CONAN_STABLE_BRANCH_PATTERN: "release/*"
     #CONAN_UPLOAD_ONLY_WHEN_STABLE: 0 # 1 # Will only upload when the branch matches "release/*"
 
