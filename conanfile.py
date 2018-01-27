@@ -80,4 +80,4 @@ endif()
         else:
             self.cpp_info.libs = ['z']
             
-        self.env_info.ZLIB_DIR = self.package_folder
+        self.env_info.ZLIB_ROOT = self.package_folder
