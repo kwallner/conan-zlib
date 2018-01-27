@@ -79,3 +79,5 @@ endif()
                 self.cpp_info.libs[0] += "d"
         else:
             self.cpp_info.libs = ['z']
+            
+        self.env_info.ZLIB_DIR = self.package_folder
